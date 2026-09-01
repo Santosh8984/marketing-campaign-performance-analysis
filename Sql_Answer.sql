@@ -1,0 +1,85 @@
+--  01 --  Which channel delivers the best ROI?
+-- Compare average ROI and Conversion_Rate across each Channel_Used to identify the most cost-effective
+-- channels, then reallocate budget toward top performers
+-- SELECT 
+--     Channel_Used,
+--     COUNT(*) AS campaigns,
+--     ROUND(AVG(ROI), 2) AS avg_roi,
+--     ROUND(AVG(Engagement_Score), 2) AS avg_conversion_rate
+-- FROM marketing_campaign
+-- GROUP BY Channel_Used
+-- ORDER BY campaigns desc ,avg_roi DESC, avg_conversion_rate DESC;
+
+-- 2. How efficient is our customer acquisition?
+-- Analyse Acquisition_Cost against Conversion_Rate and ROI by Campaign_Type and Channel_Used to find
+-- where we spend the most to win a customer versus where we get the best value.
+-- SELECT 
+--     Campaign_Type,
+--     Channel_Used,
+--     COUNT(*) AS Total_Campaigns,
+--     ROUND(AVG(Acquisition_Cost), 2) AS Avg_Acquisition_Cost,
+--     ROUND(AVG(ROI), 2) AS Avg_ROI
+-- FROM marketing_campaign
+-- GROUP BY Campaign_Type, Channel_Used
+-- ORDER BY Avg_Acquisition_Cost DESC;
+
+-- 3. Which customer segments and audience groups convert best?
+-- Break down Conversion_Rate and ROI by Customer_Segment, Audience_Group and Target_Audience to
+-- reveal the highest-value segments worth targeting.
+-- SELECT 
+--     Customer_Segment,
+--     Audience_Group,
+--     COUNT(*) AS Total_Campaigns,
+--     ROUND(AVG(ROI), 2) AS Avg_ROI
+-- FROM marketing_campaign
+-- GROUP BY 
+--     Customer_Segment,
+--     Audience_Group
+-- ORDER BY Avg_ROI DESC;
+
+-- 4. What is the relationship between Clicks, Impressions and Conversions?
+-- Compute Click-Through Rate (Clicks ÷ Impressions) and correlate it with Conversion_Rate and
+-- Engagement_Score to see whether reach actually translates into results.
+-- SELECT 
+--     Channel_Used,
+--     COUNT(*) AS Total_Channel_Used,
+--     SUM(Clicks) AS Total_Clicks,
+--     SUM(Impressions) AS Total_Impressions,
+--     ROUND(SUM(Clicks) / NULLIF(SUM(Impressions), 0) * 100, 2) AS Click_Through_Rate,
+--     ROUND(AVG(Engagement_Score), 2) AS Avg_Engagement_Score
+-- FROM marketing_campaign
+-- GROUP BY Channel_Used
+-- ORDER BY Click_Through_Rate DESC;
+
+-- 5. How do campaigns perform across demographics?
+-- Segment performance by Gender and Age_Group to understand which demographic profiles respond most
+-- strongly to each Campaign_Type.
+-- SELECT 
+--     Gender,
+--     Age_Group,
+--     Campaign_Type,
+--     COUNT(*) AS Total_Campaigns,
+--     ROUND(AVG(Engagement_Score), 2) AS Avg_Engagement_Score,
+--     ROUND(AVG(ROI), 2) AS Avg_ROI
+-- FROM marketing_campaign
+-- GROUP BY 
+--     Gender,
+--     Age_Group,
+--     Campaign_Type
+-- ORDER BY Avg_ROI DESC,Avg_Engagement_Score  DESC
+-- limit 10;
+
+--  Which locations and languages drive the most value?
+-- Rank Location and Language by ROI, Conversion_Rate and Engagement_Score to guide geographic and
+-- localisation strategy
+-- SELECT 
+--     Location,
+--     Language,
+--     COUNT(*) AS Total_Campaigns,
+--     ROUND(AVG(ROI), 2) AS Avg_ROI,
+--     ROUND(AVG(Engagement_Score), 2) AS Avg_Engagement_Score
+-- FROM marketing_campaign
+-- GROUP BY Location, Language
+-- ORDER BY Avg_ROI DESC, 
+--          Avg_Engagement_Score DESC
+-- LIMIT 10;
