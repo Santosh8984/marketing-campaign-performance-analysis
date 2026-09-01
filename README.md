@@ -9,6 +9,7 @@ This project analyzes marketing campaign performance using Microsoft Power BI.
 The dashboard is designed to monitor campaign efficiency across marketing channels, track acquisition costs, analyze user engagement, and identify high-performing audience segments.
 
 The goal is to transform campaign-level data into actionable business insights through interactive dashboards and DAX-based KPIs.
+<img width="1426" height="802" alt="image" src="https://github.com/user-attachments/assets/e5807678-ccd3-4bff-9a47-b1bf9735ec2e" />
 
 ---
 
